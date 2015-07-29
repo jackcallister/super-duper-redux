@@ -1,0 +1,5 @@
+{
+  "JS_CLIENT_URL": "http://localhost:4001/client.js",
+  "JS_SESSION_URL": "http://localhost:4001/session.js",
+  "API_URL": "http://localhost:3000/api"
+}

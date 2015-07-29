@@ -1,0 +1,3 @@
+export const SELECT_MEAL = 'SELECT_MEAL';
+export const DELETE_MEAL = 'DELETE_MEAL';
+export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';
