@@ -6,7 +6,7 @@ let router = express.Router();
 router.use(sessionsMiddleware);
 
 router.get('/', (req, res) => {
-  res.render('index');
+  res.render('client');
 });
 
 export default router;
