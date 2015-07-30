@@ -6,14 +6,12 @@ import reduce from 'lodash/collection/reduce';
 class ShoppingList extends React.Component {
 
   render() {
-    let ingredientQuantities = {};
-
-    this.props.ingredientIds.forEach( id =>
-      ingredientQuantities[id] = ingredientQuantities[id] ? ingredientQuantities[id] + 1 : 1
-    );
-
     const meals = this.props.meals.map((meal) => {
       return <li key={meal.id}> {meal.name} </li>;
+    });
+
+    const ingredients = this.props.ingredients.map((ingredient) => {
+      return <li key={ingredient.id}> {ingredient.name} x {ingredient.count} </li>;
     });
 
     return (
@@ -26,32 +24,49 @@ class ShoppingList extends React.Component {
         Your shopping list
 
         <ul>
+          {ingredients}
         </ul>
       </div>
     );
   }
 }
 
-function selectMeals(state) {
-  const shoppingList = state.shoppingList;
-  const meals = state.meals.filter( meal =>
-    includes(shoppingList, meal.id)
-  );
+function select(state) {
+  const meals = state.meals.filter((meal) => {
+    return includes(state.shoppingList, meal.id);
+  });
 
-  const ingredientIds = reduce(meals, (collector, meal) => {
-    return collector.concat(meal.ingredientIds)
+  const ingredients = reduce(meals, (ingredients, meal) => {
+    meal.ingredientIds.forEach((ingredientId) => {
+      let ingredient;
+      ingredient = ingredients.find((ingredient) => {
+        return ingredient.id === ingredientId;
+      });
+
+      if (ingredient) {
+        ingredient.count += 1;
+      } else {
+        ingredient = state.ingredients.find((ingredient) => {
+          return ingredient.id === ingredientId;
+        });
+        ingredient.count = 1;
+        ingredients.push(ingredient);
+      }
+    });
+
+    return ingredients;
   }, []);
 
-  return { meals: meals, ingredientIds: ingredientIds };
+  return { meals: meals, ingredients: ingredients };
 }
 
 export default class ShoppingListConnector extends React.Component {
 
   render() {
     return (
-      <Connector select={selectMeals}>
-        {({ meals, ingredientIds }) =>
-          <ShoppingList key='shoppingList' meals={meals} ingredientIds={ingredientIds} />
+      <Connector select={select}>
+        {({ meals, ingredients }) =>
+          <ShoppingList key='shoppingList' meals={meals} ingredients={ingredients} />
         }
       </Connector>
     );
