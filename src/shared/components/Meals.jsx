@@ -1,13 +1,15 @@
 import React from 'react';
 import { Connector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { selectMeals } from '../selects/mealSelects';
 import Meal from './Meal';
 
-class Meals extends React.Component {
+
+class Meals {
 
   render() {
     const meals = this.props.meals.map( meal =>
-      <Meal key={meal.id} {...meal} />
+      <Meal key={meal.id} meal={meal} />
     );
 
     return (
@@ -18,15 +20,11 @@ class Meals extends React.Component {
   }
 }
 
-function select(state) {
-  return { meals: state.meals };
-}
-
-export default class MealsConnector extends React.Component {
+export default class MealsConnector {
 
   render() {
     return (
-      <Connector select={select}>
+      <Connector select={selectMeals}>
         {({ meals }) =>
           <Meals meals={meals} />
         }

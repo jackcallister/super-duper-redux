@@ -1,21 +1,11 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Connector } from 'react-redux';
-import includes from 'lodash/collection/includes';
 import Ingredients from './Ingredients';
+import { selectIngredientsFromMeal } from '../selects/mealSelects';
 import * as MealsActions from '../actions/MealsActions';
 
-function select(ingredientIds) {
-  return function(state) {
-    const ingredients = state.ingredients.filter( ingredient =>
-      includes(ingredientIds, ingredient.id)
-    );
-
-    return { ingredients: ingredients };
-  }
-}
-
-class Meal extends React.Component {
+class Meal {
 
   selectMeal(e) {
     this.props.selectMeal(this.props.id);
@@ -28,25 +18,24 @@ class Meal extends React.Component {
   render() {
     return (
       <li>
-        <p onClick={(e) => { this.selectMeal(e) }}>{this.props.name}</p>
+        <p onClick={(e) => { this.selectMeal(e) }}>
+          {this.props.name}
+        </p>
 
-        <Connector select={select(this.props.ingredientIds)}>
-          {({ ingredients }) =>
-            <Ingredients ingredients={ingredients} mealId={this.props.id} />
-          }
-        </Connector>
+        <Ingredients ingredients={this.props.ingredients} />
       </li>
     );
   }
 }
 
-export default class MealConnector extends React.Component {
+export default class MealConnector {
 
   render() {
+
     return (
-      <Connector>
-        {({ dispatch }) =>
-          <Meal {...this.props} {...bindActionCreators(MealsActions, dispatch)} />
+      <Connector select={selectIngredientsFromMeal(this.props.meal)}>
+        {({ meal, ingredients, dispatch }) =>
+          <Meal {...meal} ingredients={ingredients} {...bindActionCreators(MealsActions, dispatch)} />
         }
       </Connector>
     );

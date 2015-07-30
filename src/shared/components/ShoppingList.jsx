@@ -1,9 +1,8 @@
 import React from 'react';
 import { Connector } from 'react-redux';
-import includes from 'lodash/collection/includes';
-import reduce from 'lodash/collection/reduce';
+import { selectShoppingList } from '../selects/shoppingListSelects';
 
-class ShoppingList extends React.Component {
+class ShoppingList {
 
   render() {
     const meals = this.props.meals.map((meal) => {
@@ -31,40 +30,11 @@ class ShoppingList extends React.Component {
   }
 }
 
-function select(state) {
-  const meals = state.meals.filter((meal) => {
-    return includes(state.shoppingList, meal.id);
-  });
-
-  const ingredients = reduce(meals, (ingredients, meal) => {
-    meal.ingredientIds.forEach((ingredientId) => {
-      let ingredient;
-      ingredient = ingredients.find((ingredient) => {
-        return ingredient.id === ingredientId;
-      });
-
-      if (ingredient) {
-        ingredient.count += 1;
-      } else {
-        ingredient = state.ingredients.find((ingredient) => {
-          return ingredient.id === ingredientId;
-        });
-        ingredient.count = 1;
-        ingredients.push(ingredient);
-      }
-    });
-
-    return ingredients;
-  }, []);
-
-  return { meals: meals, ingredients: ingredients };
-}
-
-export default class ShoppingListConnector extends React.Component {
+export default class ShoppingListConnector {
 
   render() {
     return (
-      <Connector select={select}>
+      <Connector select={selectShoppingList}>
         {({ meals, ingredients }) =>
           <ShoppingList key='shoppingList' meals={meals} ingredients={ingredients} />
         }
