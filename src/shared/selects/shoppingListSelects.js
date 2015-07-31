@@ -1,9 +1,9 @@
 import includes from 'lodash/collection/includes';
 import reduce from 'lodash/collection/reduce';
 
-function selectShoppingList(state) {
-  const meals = state.meals.filter((meal) => {
-    return includes(state.shoppingList, meal.id);
+function selectShoppingList(store) {
+  const meals = store.meals.filter((meal) => {
+    return includes(store.shoppingList, meal.id);
   });
 
   const ingredients = reduce(meals, (ingredients, meal) => {
@@ -17,7 +17,7 @@ function selectShoppingList(state) {
       if (ingredient) {
         ingredient.count += 1;
       } else {
-        ingredient = state.ingredients.find((ingredient) => {
+        ingredient = store.ingredients.find((ingredient) => {
           return ingredient.id === ingredientId;
         });
         ingredient.count = 1;
