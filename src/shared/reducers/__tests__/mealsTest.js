@@ -1,8 +1,6 @@
 import assert from 'assert';
 import meals from '../meals';
 
-
-
 describe('meals reducer', function() {
   let state;
   let action = {};
@@ -16,7 +14,7 @@ describe('meals reducer', function() {
 
     state = meals(initialState, action);
 
-    it('has two items', function() {
+    it('has one items', function() {
       assert.equal(state.length, 1);
     });
   });
