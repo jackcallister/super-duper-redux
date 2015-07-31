@@ -1,6 +1,5 @@
 import React from 'react';
 import { Connector } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { selectMeals } from '../selects/mealSelects';
 import Meal from './Meal';
 

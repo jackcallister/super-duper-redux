@@ -38,9 +38,15 @@ module.exports = function(config) {
 
       module: {
         loaders: [
-          { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel'] }
+          { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel&stage=0'] }
         ]
       },
+
+      quiet: true
+    },
+
+    webpackServer: {
+      noInfo: false
     },
 
     // test results reporter to use

@@ -1,8 +1,11 @@
 import without from 'lodash/array/without';
+import { createReducer } from '../utils/reduxUtils';
 
 import {
   DELETE_MEAL,
-  REMOVE_INGREDIENT
+  REMOVE_INGREDIENT,
+  BEGIN_CREATING_MEAL,
+  SUCCESS_CREATING_MEAL
 } from '../constants/MealsConstants';
 
 const initialState = [{
@@ -16,26 +19,43 @@ const initialState = [{
   ingredientIds: [1]
 }];
 
-export default function meals(state = initialState, action) {
-  switch (action.type) {
-
-  case DELETE_MEAL:
-    return state.filter( meal =>
-      meal.id !== action.payload
-    );
-
-  case REMOVE_INGREDIENT:
-    const ingredientId = action.payload.ingredientId;
-
-    return state.map(meal => {
-      if (meal.id === action.payload.id) {
-        return { ...meal, ingredientIds: without(meal.ingredientIds, ingredientId) };
-      } else {
-        return meal;
-      }
-    });
-
-  default:
-    return state;
-  }
+function deleteMeal(state, action) {
+  return state.filter((meal) => {
+    meal.id !== action.payload;
+  });
 }
+
+function removeIngredient(state, action) {
+  const ingredientId = action.payload.ingredientId;
+
+  return state.map((meal) => {
+    if (meal.id === action.payload.id) {
+      return { ...meal, ingredientIds: without(meal.ingredientIds, ingredientId) };
+    } else {
+      return meal;
+    }
+  });
+}
+
+function beginCreatingMeal(state, action) {
+  console.log('BEGIN', action)
+  return state;
+}
+
+function successCreatingMeal(state, action) {
+  console.log('SUCCESS', action)
+  return state;
+}
+
+function errorCreatingMeal(state, action) {
+  console.log('ERROR', action)
+  return state;
+}
+
+export default createReducer(initialState, {
+  [DELETE_MEAL]: deleteMeal,
+  [REMOVE_INGREDIENT]: removeIngredient,
+  [BEGIN_CREATING_MEAL]: beginCreatingMeal,
+  [SUCCESS_CREATING_MEAL]: successCreatingMeal,
+  [ERROR_CREATING_MEAL]: errorCreatingMeal
+});

@@ -7,18 +7,10 @@ import * as MealsActions from '../actions/MealsActions';
 
 class Meal {
 
-  selectMeal(e) {
-    this.props.selectMeal(this.props.id);
-  }
-
-  deleteMeal(e) {
-    this.props.deleteMeal(this.props.id);
-  }
-
   render() {
     return (
       <li>
-        <p onClick={(e) => { this.selectMeal(e) }}>
+        <p onClick={(e) => { this.props.beginCreatingMeal() }}>
           {this.props.name}
         </p>
 
