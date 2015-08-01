@@ -1,13 +1,13 @@
 import includes from 'lodash/collection/includes';
 
 function selectMeals(store) {
-  return { meals: store.meals };
+  return { meals: store.meals.collection };
 }
 
 function selectIngredientsFromMeal(meal) {
 
   return function (store) {
-    const ingredients = store.ingredients.filter((ingredient) => {
+    const ingredients = store.ingredients.collection.filter((ingredient) => {
       return includes(meal.ingredientIds, ingredient.id);
     });
 

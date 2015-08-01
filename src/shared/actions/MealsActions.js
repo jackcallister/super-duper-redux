@@ -1,26 +1,27 @@
+import { createAction } from 'redux-actions';
+import * as WebUtils from '../webUtils/index';
+
 import {
   SELECT_MEAL,
   DELETE_MEAL,
-  REMOVE_INGREDIENT
+  REMOVE_INGREDIENT,
+  BEGIN_CREATING_MEAL,
+  SUCCESS_CREATING_MEAL,
+  ERROR_CREATING_MEAL,
 } from '../constants/MealsConstants';
 
-export function selectMeal(payload) {
+
+export const selectMeal = createAction(SELECT_MEAL);
+export const deleteMeal = createAction(DELETE_MEAL);
+export const removeIngredient = createAction(REMOVE_INGREDIENT);
+export const successCreatingMeal = createAction(SUCCESS_CREATING_MEAL);
+export const errorCreatingMeal = createAction(ERROR_CREATING_MEAL);
+
+export function beginCreatingMeal(payload) {
   return {
-    type: SELECT_MEAL,
-    payload: payload
-  };
+    payload: payload,
+    promise: WebUtils.createMeal(payload),
+    types: [BEGIN_CREATING_MEAL, SUCCESS_CREATING_MEAL, ERROR_CREATING_MEAL],
+  }
 }
 
-export function deleteMeal(payload) {
-  return {
-    type: DELETE_MEAL,
-    payload: payload
-  };
-}
-
-export function removeIngredient(payload) {
-  return {
-    type: REMOVE_INGREDIENT,
-    payload: payload
-  };
-}

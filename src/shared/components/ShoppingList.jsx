@@ -1,6 +1,6 @@
 import React from 'react';
 import { Connector } from 'react-redux';
-import { selectShoppingList } from '../selects/shoppingListSelects';
+import { selectShoppingList } from '../selects/ShoppingListSelect';
 
 class ShoppingList {
 
@@ -36,7 +36,8 @@ export default class ShoppingListConnector {
     return (
       <Connector select={selectShoppingList}>
         {({ meals, ingredients }) =>
-          <ShoppingList key='shoppingList' meals={meals} ingredients={ingredients} />
+          <ShoppingList meals={meals}
+                        ingredients={ingredients} />
         }
       </Connector>
     );

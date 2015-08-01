@@ -16,6 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      './node_modules/babel-core/browser-polyfill.js',
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'src/**/__tests__/**/*'
     ],
@@ -38,9 +39,15 @@ module.exports = function(config) {
 
       module: {
         loaders: [
-          { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel'] }
+          { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' }
         ]
       },
+
+      quiet: true
+    },
+
+    webpackServer: {
+      noInfo: false
     },
 
     // test results reporter to use

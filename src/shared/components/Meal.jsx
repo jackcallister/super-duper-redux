@@ -2,23 +2,15 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Connector } from 'react-redux';
 import Ingredients from './Ingredients';
-import { selectIngredientsFromMeal } from '../selects/mealSelects';
+import { selectIngredientsFromMeal } from '../selects/MealSelect';
 import * as MealsActions from '../actions/MealsActions';
 
 class Meal {
 
-  selectMeal(e) {
-    this.props.selectMeal(this.props.id);
-  }
-
-  deleteMeal(e) {
-    this.props.deleteMeal(this.props.id);
-  }
-
   render() {
     return (
       <li>
-        <p onClick={(e) => { this.selectMeal(e) }}>
+        <p onClick={(e) => { this.props.selectMeal(this.props.id) }}>
           {this.props.name}
         </p>
 
@@ -31,11 +23,14 @@ class Meal {
 export default class MealConnector {
 
   render() {
+    const select = selectIngredientsFromMeal(this.props.meal);
 
     return (
-      <Connector select={selectIngredientsFromMeal(this.props.meal)}>
+      <Connector select={select}>
         {({ meal, ingredients, dispatch }) =>
-          <Meal {...meal} ingredients={ingredients} {...bindActionCreators(MealsActions, dispatch)} />
+          <Meal ingredients={ingredients}
+                {...meal}
+                {...bindActionCreators(MealsActions, dispatch)} />
         }
       </Connector>
     );
