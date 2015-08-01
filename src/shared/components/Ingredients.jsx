@@ -6,7 +6,7 @@ export default class Ingredients {
 
   render() {
     const ingredients = this.props.ingredients.map((ingredient) => {
-      <Ingredient {...ingredient} />
+      return <Ingredient key={ingredient.id} {...ingredient} />;
     });
 
     return (

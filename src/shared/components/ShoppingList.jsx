@@ -36,7 +36,8 @@ export default class ShoppingListConnector {
     return (
       <Connector select={selectShoppingList}>
         {({ meals, ingredients }) =>
-          <ShoppingList key='shoppingList' meals={meals} ingredients={ingredients} />
+          <ShoppingList meals={meals}
+                        ingredients={ingredients} />
         }
       </Connector>
     );

@@ -10,7 +10,7 @@ class Meal {
   render() {
     return (
       <li>
-        <p onClick={(e) => { this.props.selectMeal(this.props.meal) }}>
+        <p onClick={(e) => { this.props.selectMeal(this.props.id) }}>
           {this.props.name}
         </p>
 
@@ -23,11 +23,14 @@ class Meal {
 export default class MealConnector {
 
   render() {
+    const select = selectIngredientsFromMeal(this.props.meal);
 
     return (
-      <Connector select={selectIngredientsFromMeal(this.props.meal)}>
+      <Connector select={select}>
         {({ meal, ingredients, dispatch }) =>
-          <Meal {...meal} meal={meal} ingredients={ingredients} {...bindActionCreators(MealsActions, dispatch)} />
+          <Meal ingredients={ingredients}
+                {...meal}
+                {...bindActionCreators(MealsActions, dispatch)} />
         }
       </Connector>
     );
