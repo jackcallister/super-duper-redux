@@ -5,24 +5,30 @@ describe('MealSelect', () => {
 
   describe('selectMeals', () => {
     const store = {
-      meals: 'Meals',
-      ingredients: 'Ingredients'
+      meals: {
+        collection: ['Meal'],
+      },
+      ingredients: {
+        collection: ['Ingredients']
+      }
+    }
+
+    const expectedState = {
+      meals: ['Meal']
     }
 
     const state = MealSelect.selectMeals(store)
 
     it('returns meals', () => {
-      assert.deepEqual(state, { meals: 'Meals' })
+      assert.deepEqual(state, expectedState)
     })
   })
 
   describe('selectIngredientsFromMeal', () => {
-    const meal = {
-      ingredientIds: [1]
-    }
 
-    const otherMeal = {
-      ingredientIds: [2]
+    const meal = {
+      id: 1,
+      ingredientIds: [1]
     }
 
     const ingredient = {
@@ -30,8 +36,12 @@ describe('MealSelect', () => {
     }
 
     const store = {
-      meals: [meal, otherMeal],
-      ingredients: [ingredient]
+      meals: {
+        collection: [meal]
+      },
+      ingredients: {
+        collection: [ingredient]
+      }
     }
 
     const expectedState = {
@@ -42,7 +52,7 @@ describe('MealSelect', () => {
     const state = MealSelect.selectIngredientsFromMeal(meal)(store)
 
     it('returns the meal and it\'s assigned ingredients', () => {
-      assert.deepEqual(state, expectedState)
+      assert.deepEqual(expectedState, state)
     })
   })
 })

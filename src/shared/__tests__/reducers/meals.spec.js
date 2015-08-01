@@ -1,38 +1,41 @@
-import assert from 'assert';
-import meals from '../../reducers/meals';
+import assert from 'assert'
+import meals from '../../reducers/meals'
 
 import {
-  DELETE_MEAL,
-  REMOVE_INGREDIENT
-} from '../../constants/MealsConstants';
+  SELECT_MEAL
+} from '../../constants/MealsConstants'
 
 describe('meals reducer', () => {
 
-  const initialState = [{
-    name: 'Butter chicken',
-    id: 1
-  }];
+  const initialState = {
+    collection: [{
+      name: 'Butter chicken',
+      id: 1
+    }],
 
-  describe('initial state', () => {
-    let action = {};
+    selectedMealIds: []
+  }
 
-    let state = meals(initialState, action);
+  describe('selectMeal', () => {
 
-    it('has one items', () => {
-      assert.equal(state.length, 1);
-    });
-  });
+    let expectedState = {
+      collection: [{
+        name: 'Butter chicken',
+        id: 1
+      }],
 
-  describe('deleteMeal', () => {
+      selectedMealIds: [1]
+    }
+
     let action = {
-      payload: initialState[0],
-      type: DELETE_MEAL
-    };
+      payload: 1,
+      type: SELECT_MEAL
+    }
 
-    let state = meals(initialState, action);
+    let state = meals(initialState, action)
 
     it('removes the meal', () => {
-      assert.equal(state.length, 0);
-    });
-  });
-});
+      assert.deepEqual(state, expectedState)
+    })
+  })
+})

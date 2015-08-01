@@ -16,6 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      './node_modules/babel-core/browser-polyfill.js',
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'src/**/__tests__/**/*'
     ],
