@@ -5,6 +5,8 @@ import {
 const initialState = [];
 
 export default function shoppingList(state = initialState, action) {
+
+  console.log(action)
   switch (action.type) {
 
   case SELECT_MEAL:

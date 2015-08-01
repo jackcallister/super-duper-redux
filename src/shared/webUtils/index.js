@@ -17,7 +17,6 @@ export function createSession(payload) {
 export function createMeal(payload) {
 
   return new Promise((resolve, reject) => {
-    // Talk to server
     setTimeout(() => {
       reject('Hey bro');
     }, 600);

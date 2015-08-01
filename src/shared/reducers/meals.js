@@ -5,7 +5,8 @@ import {
   DELETE_MEAL,
   REMOVE_INGREDIENT,
   BEGIN_CREATING_MEAL,
-  SUCCESS_CREATING_MEAL
+  SUCCESS_CREATING_MEAL,
+  ERROR_CREATING_MEAL
 } from '../constants/MealsConstants';
 
 const initialState = [{

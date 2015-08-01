@@ -1,6 +1,6 @@
 import React from 'react';
 import { Connector } from 'react-redux';
-import { selectShoppingList } from '../selects/shoppingListSelects';
+import { selectShoppingList } from '../selects/ShoppingListSelect';
 
 class ShoppingList {
 
