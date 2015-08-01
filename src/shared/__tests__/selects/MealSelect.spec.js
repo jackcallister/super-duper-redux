@@ -3,18 +3,27 @@ import * as MealSelect from '../../selects/MealSelect';
 
 describe('MealSelect', () => {
 
+  const meal = {
+    id: 1,
+    ingredientIds: [1]
+  }
+
+  const ingredient = {
+    id: 1
+  }
+
   describe('selectMeals', () => {
     const store = {
       meals: {
-        collection: ['Meal'],
+        collection: [meal],
       },
       ingredients: {
-        collection: ['Ingredients']
+        collection: [ingredient]
       }
     }
 
     const expectedState = {
-      meals: ['Meal']
+      meals: [meal]
     }
 
     const state = MealSelect.selectMeals(store)
@@ -25,15 +34,6 @@ describe('MealSelect', () => {
   })
 
   describe('selectIngredientsFromMeal', () => {
-
-    const meal = {
-      id: 1,
-      ingredientIds: [1]
-    }
-
-    const ingredient = {
-      id: 1
-    }
 
     const store = {
       meals: {
