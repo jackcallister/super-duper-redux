@@ -6,6 +6,7 @@ import cors from 'cors';
 import hotServer from './hotServer';
 import appRoutes from './routes/appRoutes';
 import sessionsRoutes from './routes/sessionsRoutes';
+import apiRoutes from './routes/apiRoutes';
 import config from './config/config';
 
 let app = express();
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/sessions', sessionsRoutes);
+app.use('/api', apiRoutes);
 app.use('/', appRoutes);
 
 const port = process.env.PORT || 4000;

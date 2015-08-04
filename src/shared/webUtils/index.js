@@ -17,8 +17,14 @@ export function createSession(payload) {
 export function createMeal(payload) {
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject('Hey bro');
-    }, 600);
+    const url = '/api/meals';
+
+    request.post(url).send(payload).type('json').end((error, response) => {
+      if (!error) {
+        resolve(response.body.body)
+      } else {
+        reject(error);
+      }
+    });
   });
 }

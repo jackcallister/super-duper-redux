@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Connector } from 'react-redux';
 import Ingredients from './Ingredients';
-import { selectIngredientsFromMeal } from '../selects/MealSelect';
+import { selectIngredientsFromMeal } from '../selectors/IngredientsSelector';
 import * as MealsActions from '../actions/MealsActions';
 
 class Meal {

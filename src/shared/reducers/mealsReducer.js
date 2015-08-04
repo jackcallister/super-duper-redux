@@ -3,9 +3,7 @@ import { createReducer } from '../utils/reduxUtils'
 
 import {
   SELECT_MEAL,
-  BEGIN_CREATING_MEAL,
-  SUCCESS_CREATING_MEAL,
-  ERROR_CREATING_MEAL
+  SUCCESS_CREATING_MEAL
 } from '../constants/MealsConstants'
 
 const collection = [{
@@ -32,21 +30,14 @@ function selectMeal(state, action) {
   }
 }
 
-function beginCreatingMeal(state, action) {
-  return state;
-}
-
 function successCreatingMeal(state, action) {
-  return state;
-}
-
-function errorCreatingMeal(state, action) {
-  return state;
+  return {
+    ...state,
+    collection: [...state.collection, action.payload]
+  };
 }
 
 export default createReducer(initialState, {
   [SELECT_MEAL]: selectMeal,
-  [BEGIN_CREATING_MEAL]: beginCreatingMeal,
-  [SUCCESS_CREATING_MEAL]: successCreatingMeal,
-  [ERROR_CREATING_MEAL]: errorCreatingMeal
+  [SUCCESS_CREATING_MEAL]: successCreatingMeal
 })

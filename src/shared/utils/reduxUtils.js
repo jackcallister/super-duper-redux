@@ -13,18 +13,7 @@ function createAction(constant) {
   }
 }
 
-function createAsyncAction(suffix, promise) {
-  return function (payload) {
-    return {
-      types: ['BEGIN_' + suffix, 'SUCCESS_' + suffix, 'ERROR_' + suffix],
-      payload: payload,
-      promise: promise
-    }
-  }
-}
-
 export {
   createReducer,
-  createAction,
-  createAsyncAction
+  createAction
 }

@@ -1,4 +1,4 @@
-export default function promiseMiddleware({ dispatch }) {
+export default function promiseMiddleware() {
 
   return (next) => {
     return (action) => {

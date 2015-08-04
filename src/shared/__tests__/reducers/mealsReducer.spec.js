@@ -1,5 +1,5 @@
 import assert from 'assert'
-import meals from '../../reducers/meals'
+import meals from '../../reducers/mealsReducer'
 
 import {
   SELECT_MEAL

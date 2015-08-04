@@ -1,8 +1,4 @@
-import includes from 'lodash/collection/includes';
-
-function selectMeals(store) {
-  return { meals: store.meals.collection };
-}
+import includes from 'lodash/collection/includes'
 
 function selectIngredientsFromMeal(meal) {
 
@@ -11,11 +7,10 @@ function selectIngredientsFromMeal(meal) {
       return includes(meal.ingredientIds, ingredient.id);
     });
 
-    return { meal: meal, ingredients: ingredients };
+    return { meal: meal, ingredients: ingredients }
   }
 }
 
 export {
-  selectMeals,
   selectIngredientsFromMeal
 }
