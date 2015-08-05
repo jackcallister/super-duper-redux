@@ -4,7 +4,7 @@ import { createMeal } from '../webUtils/mealWebUtils';
 let router = express.Router();
 
 router.post('/meals', (req, res) => {
-  createMeal(req.body).then((response) => {
+  createMeal(req.body, req.cookies.access_token).then((response) => {
     res.json(response);
   }).catch((error) => {
     res.redirect('/sessions/new');

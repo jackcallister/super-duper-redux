@@ -24,18 +24,23 @@ class MealForm {
   }
 
   render() {
-    console.log(this.props.name)
     return (
-      <form>
-        <input type='text'
-               value={this.props.name}
-               onChange={this.updateProp('name')} />
+      <form onSubmit={(e) => this.save(e)}>
+        <fieldset>
+          <label>Meal name</label>
+          <input type='text'
+                 value={this.props.name}
+                 onChange={this.updateProp('name')} />
+        </fieldset>
 
-        <input type='text'
-               value={this.props.ingredients}
-               onChange={this.updateProp('ingredients')} />
+        <fieldset>
+          <label>Ingredients (seperated by comma)</label>
+          <input type='text'
+                 value={this.props.ingredients}
+                 onChange={this.updateProp('ingredients')} />
+        </fieldset>
 
-        <button onClick={(e) => this.save(e)}>Save</button>
+        <input type='submit' value='Save' />
       </form>
     );
   }

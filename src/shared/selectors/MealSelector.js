@@ -1,5 +1,5 @@
 function selectMeal(store) {
-  return { meal: store.meal.resource };
+  return { meal: store.meals.resource };
 }
 
 export {
