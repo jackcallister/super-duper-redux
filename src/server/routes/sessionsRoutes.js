@@ -2,7 +2,7 @@ import express from 'express';
 import { createSession } from '../webUtils/sessionWebUtils';
 
 function setAccessToken(res, response) {
-  const token = response.body.access_token;
+  const token = response.body.user.access_token;
   const opts = { maxAge: 900000, httpOnly: false };
 
   res.cookie('access_token', token, opts);

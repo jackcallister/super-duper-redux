@@ -1,8 +1,8 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { Connector } from 'react-redux'
-import * as MealActions from '../actions/MealActions'
-import { selectMeal } from '../selectors/MealSelector'
+import * as MealsActions from '../actions/MealsActions'
+import { selectMeal } from '../selectors/MealsSelector'
 
 class MealForm {
 
@@ -52,7 +52,7 @@ export default class MealFormConnector {
     return (
       <Connector select={selectMeal}>
         {({ meal, dispatch }) =>
-          <MealForm {...meal} {...bindActionCreators(MealActions, dispatch)} />
+          <MealForm {...meal} {...bindActionCreators(MealsActions, dispatch)} />
         }
       </Connector>
     )

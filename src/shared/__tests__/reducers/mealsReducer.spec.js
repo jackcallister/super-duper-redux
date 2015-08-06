@@ -35,7 +35,7 @@ describe('meals reducer', () => {
     let state = meals(initialState, action)
 
     it('removes the meal', () => {
-      assert.deepEqual(state, expectedState)
+      assert.deepEqual(expectedState, state)
     })
   })
 })

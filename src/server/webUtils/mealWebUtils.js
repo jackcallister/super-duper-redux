@@ -19,6 +19,25 @@ function createMeal(body, token) {
   });
 }
 
+function getMeals(token) {
+  const url = config.get('API_URL') + '/meals';
+
+  const headers = {
+    'Authorization': token
+  }
+
+  return new Promise((resolve, reject) => {
+    request.get(url, { json: true, headers: headers }, (error, response) => {
+      if (!error) {
+        resolve(response);
+      } else {
+        reject(error);
+      }
+    });
+  });
+}
+
 export {
-  createMeal
+  createMeal,
+  getMeals
 }

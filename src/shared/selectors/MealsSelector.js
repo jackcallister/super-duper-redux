@@ -1,6 +1,10 @@
 import includes from 'lodash/collection/includes'
 import reduce from 'lodash/collection/reduce'
 
+function selectMeal(store) {
+  return { meal: store.meals.resource }
+}
+
 function selectMeals(store) {
   return { meals: store.meals.collection }
 }
@@ -36,6 +40,7 @@ function selectSelectedMeals(store) {
 }
 
 export {
+  selectMeal,
   selectMeals,
   selectSelectedMeals
 }
