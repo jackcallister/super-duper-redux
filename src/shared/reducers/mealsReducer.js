@@ -52,6 +52,11 @@ function beginCreatingMeal(state, action) {
 function successCreatingMeal(state, action) {
   return {
     ...state,
+    resource: {
+      id: null,
+      name: null,
+      ingredients: null
+    },
     collection: [...state.collection, action.payload.meal]
   };
 }
